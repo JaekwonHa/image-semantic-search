@@ -2,3 +2,5 @@
 .idea
 
 1.build-model/data/*
+
+*.h5
