@@ -1,6 +1,6 @@
 .DS_store
 .idea
 
-1.build-model/data/*
+2.build-tensorflow-model/data/*
 
 *.h5

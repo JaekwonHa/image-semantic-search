@@ -18,14 +18,14 @@ def download_from_gcs(bucket_name, source_blob_name, destination_file_name):
     print(f"File {source_blob_name} downloaded to {destination_file_name}.")
 
 bucket_name = 'practice-tensorflow'
-source_blob_name = '1.build-model/models/my_model.h5'
-destination_file_name = '/Users/user/workspace/personal/practice-tensorflow/1.build-model/models/my_model.h5'
+source_blob_name = '2.build-tensorflow-model/models/my_model.h5'
+destination_file_name = '/2.build-tensorflow-model/models/my_model.h5'
 
 # GCS에서 모델을 다운로드합니다.
 download_from_gcs(bucket_name, source_blob_name, destination_file_name)
 
 # 모델을 로드합니다.
-model = tf.keras.models.load_model('/Users/user/workspace/personal/practice-tensorflow/1.build-model/models/my_model.h5')
+model = tf.keras.models.load_model('/2.build-tensorflow-model/models/my_model.h5')
 
 img_height = 224
 img_width = 224
@@ -42,7 +42,7 @@ def load_categories(list_category_cloth_path):
     categories = {i: line.split()[0] for i, line in enumerate(content.split('\n')[2:-1], 1)}
     return categories
 
-list_category_cloth_path = '1.build-model/data/list_category_cloth.txt'
+list_category_cloth_path = '2.build-tensorflow-model/data/list_category_cloth.txt'
 categories = load_categories(list_category_cloth_path)
 
 # Gradio 인터페이스를 정의합니다.
