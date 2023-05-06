@@ -1,7 +1,7 @@
 FROM amancevice/pandas
 RUN pip3 install --upgrade google-cloud-storage
 RUN pip3 install --upgrade gcsfs
-RUN pip3 install --upgrade sklearn
+RUN pip3 install --upgrade scikit-learn
 RUN pip3 install --upgrade argparse
 RUN pip3 install --upgrade pandas
 RUN pip3 install --upgrade simplejson
