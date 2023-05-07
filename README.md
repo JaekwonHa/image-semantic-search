@@ -1,12 +1,12 @@
 # practice-tensorflow
 
-## 0.tutorial-tensorflow
+## 1.tutorial-tensorflow
 > https://www.tensorflow.org/tutorials/load_data/images?hl=ko
 
 * step1 
     - tensorflow 공식 래퍼런스를 통해 기본적인 tensorflow 모델링 과정을 진행해본다
 
-## 1.build-model
+## 2.build-tensorflow-model
 
 * step1
 	- 데이터셋 준비 deepFashion: https://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html
@@ -21,7 +21,7 @@
 	- 모델 로드 (GCS)
 	- gradio를 붙여서 이미지를 입력으로 받고, 출력으로 무슨 옷인지 분류
 
-## 2.pipeline
+## 3.tutoral-kubeflow
 
 * step1
 	- local에서 파이프라인 구축
@@ -33,7 +33,7 @@
 	- github action 붙여서 새로운 코드 배포 자동화
 	- github action 붙여서 새로운 데이터셋 배포 자동화
 
-## 3.advance
+## 99.advance
 
 * DVC, feast, offline/online 등을 해보거나 다음 프로젝트로 넘어가기
 * dataflow, autoML, Vertex AI Training
