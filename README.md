@@ -33,6 +33,26 @@
 	- github action 붙여서 새로운 코드 배포 자동화
 	- github action 붙여서 새로운 데이터셋 배포 자동화
 
+## 4.image-semantic-search
+
+* step1
+	- 이미지 100개 정도를 벡터화
+	- 벡터화된거 차원축소해서 클러스터링 해본다
+	- 최적 클러스터 개수는 실루엣점수, 그래프 사용해서 분석
+* step2
+	- es 설치
+	- es에 인덱싱하고 전혀 다른 이미지로 knn search 해본다
+	- knn search 결과를 다시 이미지로 보여주는 로직 작성
+* step3
+	- 임베딩 인덱싱 pyspark 코드 작성
+		+ 임베딩 모델은 spark executor 내부에서 로드
+		+ spark executor는 gcp k8s에서 실행
+		+ 인덱스 이름을 파라미터로 받도록 설정
+	- Docker 이미지로 빌드
+* step4
+	- 임베딩 인덱싱 Kubeflow DAG 코드 작성
+
+
 ## 99.advance
 
 * DVC, feast, offline/online 등을 해보거나 다음 프로젝트로 넘어가기
