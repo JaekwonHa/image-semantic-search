@@ -35,22 +35,44 @@
 
 ## 4.image-semantic-search
 
-* step1
-	- 이미지 100개 정도를 벡터화
-	- 벡터화된거 차원축소해서 클러스터링 해본다
-	- 최적 클러스터 개수는 실루엣점수, 그래프 사용해서 분석
-* step2
-	- es 설치
-	- es에 인덱싱하고 전혀 다른 이미지로 knn search 해본다
-	- knn search 결과를 다시 이미지로 보여주는 로직 작성
-* step3
-	- 임베딩 인덱싱 pyspark 코드 작성
-		+ 임베딩 모델은 spark executor 내부에서 로드
-		+ spark executor는 gcp k8s에서 실행
-		+ 인덱스 이름을 파라미터로 받도록 설정
-	- Docker 이미지로 빌드
-* step4
-	- 임베딩 인덱싱 Kubeflow DAG 코드 작성
+### step1
+- 이미지 100개 정도를 벡터화해서 저장
+- 벡터화된거 차원축소해서 클러스터링 해본다
+- 최적 클러스터 개수는 실루엣점수, 그래프 사용해서 분석
+	+ 근데 최적 클러스터의 개수를 구해서 어디에 쓰지? 그냥 바로 시멘틱 서치를 해보는게 의미 있지 않을까
+
+### step2
+* opensearch 구성
+	* GCP VM Instance 생성(centos7)
+	* opensearch 설치
+	* opensearch.service 파일 생성
+		- /etc/systemd/system/opensearch.sercice
+	* VPC 네트워크 > 방화벽 규칙 생성 (0.0.0.0/0:9200)
+	* opensearch 실행
+	* opensearch 확인
+		- `http://34.68.94.225:9200/_cluster/health`
+* knn search 테스트
+	- sample data gs 업로드
+	- sample data 벡터화
+	- index 생성
+	- 색인
+	- knn search
+* 어플리케이션 로직 작성
+	- knn search 결과를 다시 이미지로 보여주는 API
+
+### step3
+- 임베딩 인덱싱 pyspark 코드 작성
+	+ 임베딩 모델은 spark executor 내부에서 로드
+	+ spark executor는 gcp k8s에서 실행
+	+ 인덱스 이름을 파라미터로 받도록 설정
+- Docker 이미지로 빌드
+
+### step4
+* 임베딩 인덱싱 Kubeflow DAG 코드 작성
+
+### step5
+- 블로그 작성. 너무 자세하게 쓰기 보다는
+* 별도 Repo로 분리하는게 필요할수도
 
 
 ## 99.advance
