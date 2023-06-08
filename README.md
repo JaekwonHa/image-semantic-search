@@ -51,11 +51,21 @@
 	* opensearch 실행
 	* opensearch 확인
 		- `http://34.68.94.225:9200/_cluster/health`
+	* issue
+		- knn library를 찾지 못함
+			+ export OPENSEARCH_JAVA_HOME=/home/tangojk0002/opensearch-2.8.0/jdk
+			+ export KNN_LIB_DIR=/home/tangojk0002/opensearch-2.8.0/plugins/opensearch-knn/lib
+			+ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$KNN_LIB_DIR
+		- 루프백 IP에 바인딩됨
+			+ network.host: 0.0.0.0
+			+ discovery.seed_hosts: ["0.0.0.0"]
+		- tar 설치 과정에서 knn lib 연동에 실패하여 rpm 파일로 설치 진행
 * knn search 테스트
 	- sample data gs 업로드
 	- sample data 벡터화
 	- index 생성
 	- 색인
+		+ elasticsearch 7.12.1 사용
 	- knn search
 * 어플리케이션 로직 작성
 	- knn search 결과를 다시 이미지로 보여주는 API
