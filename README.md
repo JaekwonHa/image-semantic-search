@@ -1,10 +1,43 @@
-# practice-tensorflow
+# practice-mlops
+
+* 목표: image-semantic-search 어플리케이션 개발. 자동화된 MLOps 파이프라인 개발
+* 기술 스택
+	- tensorflow
+	- kubeflow
+	- spark
+	- elasticsearch(vector search)
+	- GCP
+* advance 과제
+	- offline/online 파이프라인 구분
+	- DVC
+	- feast
+	- dataflow, autoML, Vertex AI Training
+	- katib
+
+## MLOps
+
+### MLOps가 기본적으로 제공해야하는 기능
+* 신규 '코드'가 들어왔을때 자동으로 잘 통합되어야한다. 제공이 가능해야한다
+  - 학계에서 발표된 SOTA 알고리즘, 다른 방식의 피처 엔지니어링 구현
+* 신규 '데이터'가 들어왔을때 자동으로 잘 통합되어야한다. 제공이 가능해야한다
+  - 모델의 성능 저하로 데이터를 추가하여 모델을 재학습
+
+### Machine learning workflow
+1. 데이터 관리
+2. 모델 학습
+3. 모델 평가
+4. 모델 배포
+5. 예측 실행
+6. 예측 관리
 
 ## 1.tutorial-tensorflow
-> https://www.tensorflow.org/tutorials/load_data/images?hl=ko
 
 * step1 
     - tensorflow 공식 래퍼런스를 통해 기본적인 tensorflow 모델링 과정을 진행해본다
+
+### 참고
+
+* [tensorflow-tutorial](https://www.tensorflow.org/tutorials/load_data/images?hl=ko)
 
 ## 2.build-tensorflow-model
 
@@ -25,13 +58,16 @@
 
 * step1
 	- local에서 파이프라인 구축
-	- 모델 전처리, 학습, 파인튜닝 과정을 kubeflow로 옮기기. (TFX는 안써도되나?)
+	- 모델 전처리, 학습, 파인튜닝 과정을 kubeflow로 옮기기
+		+ TFX가 필수는 아님
 * step2
 	- GCS k8s 클러스터에 구축
-	- GCS에 gradio 앱 배포
-* step3
-	- github action 붙여서 새로운 코드 배포 자동화
-	- github action 붙여서 새로운 데이터셋 배포 자동화
+	- kubeflow pipeline 설치
+	- kubeflow DAG 배포, 실행
+
+### 참고
+
+* [[GCP] AI Platform에서 구현하는 Kubeflow Pipelines 기반 ML 학습 및 배포 예제 (Part 1/3)](https://medium.com/google-cloud-apac/gcp-ai-platform-%EC%97%90%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%98%EB%8A%94-kubeflow-pipelines-%EA%B8%B0%EB%B0%98-ml-%ED%95%99%EC%8A%B5-%EB%B0%8F-%EB%B0%B0%ED%8F%AC-%EC%98%88%EC%A0%9C-part-1-3-d49f1096d786)
 
 ## 4.image-semantic-search
 
@@ -71,23 +107,30 @@
 	- knn search 결과를 다시 이미지로 보여주는 API
 
 ### step3
-- 임베딩 인덱싱 pyspark 코드 작성
-	+ 임베딩 모델은 spark executor 내부에서 로드
-	+ spark executor는 gcp k8s에서 실행
-	+ 인덱스 이름을 파라미터로 받도록 설정
-- Docker 이미지로 빌드
+
+#### 1.간단한 pyspark 코드를 k8s에서 실행
++ spark-submit on k8s 환경 구성
++ spark executor는 gcp k8s에서 실행
++ Spark-submit vs Spark Operator
+
+* 사전 작업
+  * GCP k8s 클러스터 구성
+  * GCP container registry 구성
+  * driver pod를 위한 k8s ServiceAccount 생성
+
+
+
+
+#### 2.임베딩 인덱싱 pyspark 코드 작성
++ 임베딩 모델은 spark executor 내부에서 로드
++ 인덱스 이름을 파라미터로 받도록 설정
 
 ### step4
 * 임베딩 인덱싱 Kubeflow DAG 코드 작성
+  * https://github.com/GoogleCloudPlatform/vertex-ai-samples/blob/main/notebooks/official/pipelines/pipelines_intro_kfp.ipynb
 
 ### step5
-- 블로그 작성. 너무 자세하게 쓰기 보다는
-* 별도 Repo로 분리하는게 필요할수도
-
-
-## 99.advance
-
-* DVC, feast, offline/online 등을 해보거나 다음 프로젝트로 넘어가기
-* dataflow, autoML, Vertex AI Training
-* katib
- 
+- 블로그 작성. 너무 자세하게 쓰기 보다는 (영어로 하는게 좋을까?)
+- 전체 시스템 구성도 작성
+- 데모 페이지를 만들어서 보여주기? https://ai-demos.dev/demos/matching-engine
+* 별도 Repo로 분리하는게 필요할수도. 그냥 이 repo의 이름을 image-semantic-search 로 변경하기
