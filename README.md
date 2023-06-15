@@ -34,14 +34,7 @@
 
 * step1 
     - tensorflow 공식 래퍼런스를 통해 기본적인 tensorflow 모델링 과정을 진행해본다
-
-### 참고
-
-* [tensorflow-tutorial](https://www.tensorflow.org/tutorials/load_data/images?hl=ko)
-
-## 2.build-tensorflow-model
-
-* step1
+* step2
 	- 데이터셋 준비 deepFashion: https://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html
 	- GCP 신규 계정 발급
 	- 데이터셋 업로드 (GCS)
@@ -50,11 +43,13 @@
 	- 모델 학습, 파인 튜닝
 	- 예측해보기
 	- 모델 저장 (GCS)
-* step2
-	- 모델 로드 (GCS)
-	- gradio를 붙여서 이미지를 입력으로 받고, 출력으로 무슨 옷인지 분류
+    - gradio 어플리케이션 코드 작성
 
-## 3.tutoral-kubeflow
+### 참고
+
+* [tensorflow-tutorial](https://www.tensorflow.org/tutorials/load_data/images?hl=ko)
+
+## 2.tutoral-kubeflow
 
 * step1
 	- local에서 파이프라인 구축
@@ -69,7 +64,7 @@
 
 * [[GCP] AI Platform에서 구현하는 Kubeflow Pipelines 기반 ML 학습 및 배포 예제 (Part 1/3)](https://medium.com/google-cloud-apac/gcp-ai-platform-%EC%97%90%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%98%EB%8A%94-kubeflow-pipelines-%EA%B8%B0%EB%B0%98-ml-%ED%95%99%EC%8A%B5-%EB%B0%8F-%EB%B0%B0%ED%8F%AC-%EC%98%88%EC%A0%9C-part-1-3-d49f1096d786)
 
-## 4.image-semantic-search
+## 3.tutorial-vector-search
 
 ### step1
 - 이미지 100개 정도를 벡터화해서 저장
@@ -103,33 +98,31 @@
 	- 색인
 		+ elasticsearch 7.12.1 사용
 	- knn search
-* 어플리케이션 로직 작성
-	- knn search 결과를 다시 이미지로 보여주는 API
+* 시각화 코드 작성
+	- knn search 결과를 시각화 해주는 코드 작성
 
-### step3
+## 4.tutorial-spark-on-k8s
 
-#### 1.간단한 pyspark 코드를 k8s에서 실행
-+ spark-submit on k8s 환경 구성
-+ spark executor는 gcp k8s에서 실행
-+ Spark-submit vs Spark Operator
+* 사전 검토
+	+ spark-submit on k8s(GCP) 환경 구성
+	+ Spark-submit vs Spark Operator
+* 간단한 pyspark 어플리케이션 개발. local 환경에서 실행
+* GCP k8s cluster 구성
+* GCP Artifactory Registry 구성
+* spark driver를 위한 k8s ServiceAccount 생성
+* pyspark 어플리케이션 개발, image build, push
+	+ 임베딩 모델은 spark executor 내부에서 로드
+	+ 인덱스 이름을 파라미터로 받도록 설정
+* spark-submit on k8s
 
-* 사전 작업
-  * GCP k8s 클러스터 구성
-  * GCP container registry 구성
-  * driver pod를 위한 k8s ServiceAccount 생성
+## 5.image-semantic-search
 
-
-
-
-#### 2.임베딩 인덱싱 pyspark 코드 작성
-+ 임베딩 모델은 spark executor 내부에서 로드
-+ 인덱스 이름을 파라미터로 받도록 설정
-
-### step4
+* spark 어플리케이션 개발
 * 임베딩 인덱싱 Kubeflow DAG 코드 작성
-  * https://github.com/GoogleCloudPlatform/vertex-ai-samples/blob/main/notebooks/official/pipelines/pipelines_intro_kfp.ipynb
+	* https://github.com/GoogleCloudPlatform/vertex-ai-samples/blob/main/notebooks/official/pipelines/pipelines_intro_kfp.ipynb
 
-### step5
+## 6.정리
+- 
 - 블로그 작성. 너무 자세하게 쓰기 보다는 (영어로 하는게 좋을까?)
 - 전체 시스템 구성도 작성
 - 데모 페이지를 만들어서 보여주기? https://ai-demos.dev/demos/matching-engine

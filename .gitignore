@@ -3,5 +3,5 @@
 
 *.h5
 
-2.build-tensorflow-model/data/*
-3.tutorial-kubeflow/data/*
+1.tutorial-tensorflow/step2/data/*
+2.tutorial-kubeflow/data/*
