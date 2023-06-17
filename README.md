@@ -32,8 +32,9 @@
 
 ## 1.tutorial-tensorflow
 
-* step1 
-    - tensorflow 공식 래퍼런스를 통해 기본적인 tensorflow 모델링 과정을 진행해본다
+* step1
+	- [tensorflow-tutorial](https://www.tensorflow.org/tutorials/load_data/images?hl=ko)
+	- tensorflow 공식 래퍼런스를 통해 기본적인 tensorflow 모델링 과정을 진행해본다
 * step2
 	- 데이터셋 준비 deepFashion: https://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html
 	- GCP 신규 계정 발급
@@ -45,24 +46,14 @@
 	- 모델 저장 (GCS)
     - gradio 어플리케이션 코드 작성
 
-### 참고
-
-* [tensorflow-tutorial](https://www.tensorflow.org/tutorials/load_data/images?hl=ko)
-
 ## 2.tutoral-kubeflow
 
-* step1
-	- local에서 파이프라인 구축
-	- 모델 전처리, 학습, 파인튜닝 과정을 kubeflow로 옮기기
-		+ TFX가 필수는 아님
-* step2
-	- GCS k8s 클러스터에 구축
-	- kubeflow pipeline 설치
-	- kubeflow DAG 배포, 실행
-
-### 참고
-
 * [[GCP] AI Platform에서 구현하는 Kubeflow Pipelines 기반 ML 학습 및 배포 예제 (Part 1/3)](https://medium.com/google-cloud-apac/gcp-ai-platform-%EC%97%90%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%98%EB%8A%94-kubeflow-pipelines-%EA%B8%B0%EB%B0%98-ml-%ED%95%99%EC%8A%B5-%EB%B0%8F-%EB%B0%B0%ED%8F%AC-%EC%98%88%EC%A0%9C-part-1-3-d49f1096d786)
+* GCS k8s 클러스터에 구축
+* 데이터셋 준비 titanic: https://www.kaggle.com/c/titanic/data
+* preprocess, train 코드 작성, Docker image build
+* kubeflow pipeline 설치
+* kubeflow DAG 배포, 실행
 
 ## 3.tutorial-vector-search
 
@@ -91,15 +82,15 @@
 			+ network.host: 0.0.0.0
 			+ discovery.seed_hosts: ["0.0.0.0"]
 		- tar 설치 과정에서 knn lib 연동에 실패하여 rpm 파일로 설치 진행
-* knn search 테스트
+* vector search 테스트
 	- sample data gs 업로드
 	- sample data 벡터화
 	- index 생성
 	- 색인
 		+ elasticsearch 7.12.1 사용
-	- knn search
+	- vector search
 * 시각화 코드 작성
-	- knn search 결과를 시각화 해주는 코드 작성
+	- vector search 결과를 시각화 해주는 코드 작성
 
 ## 4.tutorial-spark-on-k8s
 
