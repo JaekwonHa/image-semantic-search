@@ -1,4 +1,4 @@
-# practice-mlops
+# image-semantic-search
 
 * 목표: image-semantic-search 어플리케이션 개발. 자동화된 MLOps 파이프라인 개발
 * 기술 스택
@@ -13,6 +13,8 @@
 	- feast
 	- dataflow, autoML, Vertex AI Training
 	- katib
+
+![image](assets/image1.png)
 
 ## MLOps
 
@@ -92,6 +94,8 @@
 * 시각화 코드 작성
 	- vector search 결과를 시각화 해주는 코드 작성
 
+![image](assets/image2.png)
+
 ## 4.tutorial-spark-on-k8s
 
 * 사전 검토
@@ -111,10 +115,3 @@
 * spark 어플리케이션 개발
 * 임베딩 인덱싱 Kubeflow DAG 코드 작성
 	* https://github.com/GoogleCloudPlatform/vertex-ai-samples/blob/main/notebooks/official/pipelines/pipelines_intro_kfp.ipynb
-
-## 6.정리
-- 
-- 블로그 작성. 너무 자세하게 쓰기 보다는 (영어로 하는게 좋을까?)
-- 전체 시스템 구성도 작성
-- 데모 페이지를 만들어서 보여주기? https://ai-demos.dev/demos/matching-engine
-* 별도 Repo로 분리하는게 필요할수도. 그냥 이 repo의 이름을 image-semantic-search 로 변경하기
